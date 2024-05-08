@@ -89,8 +89,9 @@ public class UserServiceTest {
         // Exception handling for invalid sort order
         assertThrows(BadRequestException.class, () -> userService.getFollowerList(1, "other_sort"));
     }
+
     /*
-     * Test getFollowers method
+     * Unit tests T-0007
      * This test method checks the functionality of the getFollowerCount method in the UserService class.
      * The method is expected to return the count of followers for a specific user, along with the user's name and ID.
      *
@@ -111,7 +112,7 @@ public class UserServiceTest {
     }
 
     /**
-     * Test getFollowers method with bad path
+     * Unit Test T-0007 - Test getFollowers method with bad path
      * This test method checks the functionality of the getFollowerCount method in the UserService class.
      * The method is expected to throw a NotFoundException when the user is not found.
      */
