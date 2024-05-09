@@ -519,6 +519,41 @@ public class UserServiceTest {
 
         //Assert
         Assertions.assertEquals(actualresponseFollowListDto, outputFollowListDto, "Non matching sorting");
+    }
 
+    @Test
+    public void testConvertToFollowUserDto(){
+        //Arrange
+        User user = new User();
+        user.setId(1);
+        user.setUser_name("user1");
+
+        //Act
+        FollowerUsersDto followerUsersDto = userService.convertToFollowUserDto(user);
+
+        //Assert
+        assertEquals(user.getId(), followerUsersDto.getUser_id());
+    }
+
+    @Test
+    public void testMethodAddPostToUserNoUsed(){
+        //Arrange
+        Integer userId = 1;
+        Integer postId = 10;
+        Set<Integer> posts = new HashSet<>();
+        posts.add(2);
+        User user = new User();
+        user.setId(userId);
+        user.setUser_name("user1");
+        user.setPosts(posts);
+        Post post = new Post();
+        post.setId(postId);
+
+        //Act
+        when(userRepository.findUserById(userId)).thenReturn(user);
+        userService.addPostToUser(userId, postId);
+
+        //Assert
+        verify(userRepository, times(1)).addPost(userId, postId);
     }
 }

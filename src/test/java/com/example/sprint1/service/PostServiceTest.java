@@ -223,4 +223,51 @@ public class PostServiceTest {
 
     }
 
+    @Test
+    public void testFindAllPost() {
+        // Arrange
+        List<Post> posts = List.of(
+                new Post(1, 1, "01-01-2022", 1, 100.0, new Product(1, "Product 1", "Type 1", "Brand 1", "Color 1", "Notes 1"), false, 0.0),
+                new Post(2, 1, "02-01-2022", 2, 200.0, new Product(2, "Product 2", "Type 2", "Brand 2", "Color 2", "Notes 2"), false, 0.0)
+        );
+        // Act
+        Mockito.when(postRepository.findAll()).thenReturn(posts);
+        List<Post> actualPosts = postService.findAll();
+        // Assert
+        Assertions.assertEquals(posts.size(), actualPosts.size());
+        for (int i = 0; i < posts.size(); i++) {
+            Assertions.assertEquals(posts.get(i).getId(), actualPosts.get(i).getId());
+            Assertions.assertEquals(posts.get(i).getUser_id(), actualPosts.get(i).getUser_id());
+            Assertions.assertEquals(posts.get(i).getDate(), actualPosts.get(i).getDate());
+            Assertions.assertEquals(posts.get(i).getPrice(), actualPosts.get(i).getPrice());
+            Assertions.assertEquals(posts.get(i).getProduct().getId(), actualPosts.get(i).getProduct().getId());
+            Assertions.assertEquals(posts.get(i).getProduct().getProduct_name(), actualPosts.get(i).getProduct().getProduct_name());
+            Assertions.assertEquals(posts.get(i).getProduct().getType(), actualPosts.get(i).getProduct().getType());
+            Assertions.assertEquals(posts.get(i).getProduct().getBrand(), actualPosts.get(i).getProduct().getBrand());
+        }
+    }
+
+    @Test
+    public void testFindById(){
+        // Arrange
+        // Act
+        Object actual = postService.findById(1);
+        // Assert
+        Assertions.assertEquals(actual, null);
+    }
+
+    @Test
+    public void testPromosMethods(){
+        // Arrange
+        PostDto postDto = new PostDto();
+        // Act
+        Object actual = postService.postPromo(postDto);
+        Object actual2 = postService.quantityPromo(1);
+        Object actual3 = postService.getPromo(1);
+
+        // Assert
+        Assertions.assertNull(actual);
+        Assertions.assertNull(actual2);
+        Assertions.assertNull(actual3);
+    }
 }
