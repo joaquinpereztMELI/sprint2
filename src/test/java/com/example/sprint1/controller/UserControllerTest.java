@@ -28,7 +28,7 @@ public class UserControllerTest {
      * @throws Exception if there is an error during the test execution
      */
     @Test
-    void getFollowersCountHappyPath() throws Exception {
+    void integrationGetFollowersCountHappyPath() throws Exception {
         CountFollowersUserDto dto = CountFollowersUserDto.builder()
                 .userId(2)
                 .userName("user2")
