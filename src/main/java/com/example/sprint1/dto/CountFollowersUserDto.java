@@ -2,10 +2,12 @@ package com.example.sprint1.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
+@Builder
 public class CountFollowersUserDto {
     @JsonProperty("user_id")
     public Integer userId;
