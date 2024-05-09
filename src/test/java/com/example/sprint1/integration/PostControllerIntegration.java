@@ -61,8 +61,8 @@ public class PostControllerIntegration {
         payloadJSON = writer.writeValueAsString(postDto);
 
         Map<String, String> expectedResponse = new HashMap<>();
-        expectedResponse.put("name", "IllegalArgumentException");
-        expectedResponse.put("description", "User ID and Product must not be null");
+        expectedResponse.put("name", "MethodArgumentNotValidException");
+        expectedResponse.put("description", "El product no puede estar vacío.");
         String expectedResponseJSON = writer.writeValueAsString(expectedResponse);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/products/post")
@@ -94,8 +94,8 @@ public class PostControllerIntegration {
         payloadJSON = writer.writeValueAsString(postDto);
 
         Map<String, String> expectedResponse = new HashMap<>();
-        expectedResponse.put("name", "IllegalArgumentException");
-        expectedResponse.put("description", "Price must be positive");
+        expectedResponse.put("name", "MethodArgumentNotValidException");
+        expectedResponse.put("description", "El precio mínimo es de 0.01");
         String expectedResponseJSON = writer.writeValueAsString(expectedResponse);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/products/post")
@@ -111,8 +111,8 @@ public class PostControllerIntegration {
         payloadJSON = writer.writeValueAsString(postDto);
 
         Map<String, String> expectedResponse = new HashMap<>();
-        expectedResponse.put("name", "IllegalArgumentException");
-        expectedResponse.put("description", "Date format is invalid, should be 'dd-MM-yyyy'");
+        expectedResponse.put("name", "MethodArgumentNotValidException");
+        expectedResponse.put("description", "La fecha debe tener el formato dd-mm-yyyy");
         String expectedResponseJSON = writer.writeValueAsString(expectedResponse);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/products/post")
